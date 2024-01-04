@@ -31,37 +31,38 @@ class ProductController extends Controller
     {
         $imageFile = $request->file('profile_image');
         //DD($imageFile);
-        $transformName = hexdec(uniqid()). "." . $imageFile->getClientOriginalExtension();
+        $transformName = hexdec(uniqid()) . "." . $imageFile->getClientOriginalExtension();
         //console.log($transformName);
-        Image::make($imageFile)->resize(200,200)->save('upload/product/'. $transformName);
-        $save_url='upload/product/'. $transformName;
+        Image::make($imageFile)->resize(200, 200)->save('upload/product/' . $transformName);
+        $save_url = 'upload/product/' . $transformName;
 
-    try{
         Product::insert([
             "code" => $request->code,
             "description" => $request->description,
             "image" => $save_url,
-            "family" => $request->family,
-            "unit" => $request->unit,
-            "taxRateCode" => $request->taxRateCode,
+            "family" => $request->product_family,
+            "unit" => $request->product_unit,
+            "taxRateCode" => $request->product_taxRateCode,
             "created_by" => Auth::user()->id,
             "created_at" => Carbon::now(),
             "updated_by" => Auth::user()->id,
         ]);
-            $notification = array(
+        $notification = array(
             'message' => 'Product Inserted',
             'alert-type' => 'success',
         );
-        return redirect()->route('product.all')->with($notification);
-    } catch (\Exception $e) {
-        $notification = array(
-            'message' => $e,
-            'alert-type' => 'error',
-        );
         unlink($save_url);
         return redirect()->route('product.all')->with($notification);
-    }
-        
+        /* try {
+         } catch (\Exception $e) {
+            $notification = array(
+                'message' => $e,
+                'alert-type' => 'error',
+            );
+            unlink($save_url);
+            return redirect()->route('product.all')->with($notification);
+        } */
+
     }
     public function ProductsEdit($id)
     {
@@ -70,7 +71,7 @@ class ProductController extends Controller
             $unitMeasures = UnitMeasure::all();
             $taxRates = TaxRate::all();
             $product = Product::findOrFail($id);
-            return view('backend.product.product_edit', compact('families','unitMeasures','taxRates','product'));
+            return view('backend.product.product_edit', compact('families', 'unitMeasures', 'taxRates', 'product'));
 
         } catch (\Exception $e) {
             $notification = array(

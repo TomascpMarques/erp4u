@@ -118,7 +118,7 @@
                             <div class="form-group col-sm-1">
                                 <select
                                     id="product_taxRateCode"
-                                    name="taxRateCode_Product"
+                                    name="product_taxRateCode"
                                     class="form-select select2"
                                     aria-label="Default select example"
                                 >
