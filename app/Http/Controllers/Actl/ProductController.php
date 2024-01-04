@@ -11,6 +11,8 @@ use App\Models\Family;
 use App\Models\TaxRate;
 use App\Models\UnitMeasure;
 
+use Image;
+
 class ProductController extends Controller
 {
     public function ProductsAll()
@@ -27,10 +29,10 @@ class ProductController extends Controller
     }
     public function ProductsStore(Request $request)
     {
-        $imageFile = $request->file('profileImage');
-        
+        $imageFile = $request->file('profile_image');
+        //DD($imageFile);
         $transformName = hexdec(uniqid()). "." . $imageFile->getClientOriginalExtension();
-
+        //console.log($transformName);
         Image::make($imageFile)->resize(200,200)->save('upload/product/'. $transformName);
         $save_url='upload/product/'. $transformName;
 
