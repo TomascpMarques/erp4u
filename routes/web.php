@@ -5,6 +5,7 @@ use App\Http\Controllers\Actl\SupplierController;
 use App\Http\Controllers\Actl\FamiliesController;
 use \App\Http\Controllers\Actl\TaxRatesController;
 use App\Http\Controllers\Actl\PostalCodeController;
+use App\Http\Controllers\Actl\UnitMeasureController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 
@@ -56,6 +57,15 @@ Route::controller(TaxRatesController::class)->group(function () {
     Route::get("/taxRates/edit/{id}", "TaxRatesEdit")->name("taxRates.edit");
     Route::post("/taxRates/update", "TaxRatesUpdate")->name("taxRates.update");
     Route::get("/taxRates/delete/{id}", "TaxRatesDelete")->name("taxRates.delete");
+})->middleware(['auth', 'verified']);
+
+Route::controller(UnitMeasureController::class)->group(function () {
+    Route::get("/unitMeasures/all", "unitMeasuresAll")->name("unitMeasures.all");
+    Route::get("/unitMeasures/add", "unitMeasuresAdd")->name("unitMeasures.add");
+    Route::post("/unitMeasures/add", "unitMeasuresStore")->name("unitMeasures.store");
+    Route::get("/unitMeasures/edit/{id}", "unitMeasuresEdit")->name("unitMeasures.edit");
+    Route::post("/unitMeasures/update", "unitMeasuresUpdate")->name("unitMeasures.update");
+    Route::get("/unitMeasures/delete/{id}", "unitMeasuresDelete")->name("unitMeasures.delete");
 })->middleware(['auth', 'verified']);
 
 // Admin All Route

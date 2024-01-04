@@ -21,17 +21,74 @@
 
                             <form method="post" action="{{ route('product.update') }}" id="myForm">
                                 @csrf
-                                <input type="hidden" name="id" value="{{ $family->id }}" />
+                                <input type="hidden" name="id" value="{{ $product->id }}" />
                                 <div class="row mb-3">
-                                    <label for="example-text-input" class="col-sm-2 col-form-label">Codigo Postal</label>
+                                    <label for="example-text-input" class="col-sm-2 col-form-label">Code</label>
                                     <div class="form-group col-sm-10">
-                                        <input name="family" class="form-control" type="text" id="family"
-                                            placeholder="sacos" style="width: 50%" value="{{ $family->family }}" />
+                                        <input name="code" class="form-control" type="text" id="code"
+                                             style="width: 50%" value="{{ $product->code }}" />
                                     </div>
                                 </div>
+                                <div class="row mb-3">
+                                    <label for="example-text-input" class="col-sm-2 col-form-label">Description</label>
+                                    <div class="form-group col-sm-10">
+                                        <input name="description" class="form-control" type="text" id="description "
+                                             style="width: 50%" value="{{ $product->description }}" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 form-group">
+                                    <select id="product_family" name="product_family" aria-label="Default select example" class="form-select select2">
+                                        <option selected=""></option>
+                                        @foreach($families as $prod)
+                                        <option iOption="" value="{{$prod-> family}}">
+                                            {{$prod-> family == $product->family ? 'selected' : ''}} > {{$prod->family}}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-sm-2 form-group">
+                                    <select id="product_unit" name="product_unit" aria-label="Default select example" class="form-select select2">
+                                        <option selected=""></option>
+                                        @foreach($unitMeasures as $prod)
+                                        <option iOption="" value="{{$prod-> unit}}">
+                                            {{$prod->unit == $product->unit ? 'selected' : ''}} > {{$prod->unit}}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-sm-2 form-group">
+                                    <select id="product_taxRateCode" name="taxRateCode_product" aria-label="Default select example" class="form-select select2">
+                                        <option selected=""></option>
+                                        @foreach($taxrates as $prod)
+                                        <option iOption="" value="{{$prod-> unit}}">
+                                            {{$prod->taxRateCode == $product->taxRateCode ? 'selected' : ''}} > {{$prod->taxRateCode}}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <!-- Product Image File-->
+                                <div class="form-group row mb-3">
+                                    <label for="example-text-input" 
+                                        class="col-sm-1 col-form-label">Img Product</label>
+                                    <div class="col-sm-11">
+                                    
+                                    <input name="profile_image" class="form-control" type="file" id="image"/>
+                                </div>
+                            </div>
+                            <div class="form-group row mb-3">
+                                <!-- Product Image Foto-->
+                                <label for="example-text-input" 
+                                        class="col-sm-1 col-form-label"></label>
+                                <div class="col-sm-11">
+                                    <img id="showImage" class="rounded avatar-lg" src="{{asset($product->image)}}" 
+                                    alt="Card image cap"/>
+                                </div>
+                            </div>
+                            <div class="form-group row mb-3">
                                 <!-- end row -->
                                 <input type="submit" class="btn btn-info waves-effect waves-light"
-                                    value="Salvar familia" />
+                                    value="Salvar Produto" />
+                            </div>
                                 <a href="{{ route('product.all') }}"
                                     class="btn btn-secondary btn-rounded waves-effect waves-light"
                                     style="
@@ -51,15 +108,58 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function() {
+            $("#showImage").click(function () {
+            $("#image").click();
+        });
+        $("#image").change(function (e) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#showImage").attr("src", e.target.result);
+            };
+            reader.readAsDataURL(e.target.files["0"]);
+        });
+        $("#product_taxRateCode").change(function () {
+            $("#1bTaxDescription").text("");
+            $("#1bTaxDescription").text(
+                $("#product_taxRateCode option: selected").attr(
+                    "iTaxDescription"
+                )
+            );
+        });
+
             $("#myForm").validate({
                 rules: {
-                    family: {
+                    code: {
+                        required: true,
+                    },
+                    descritpion: {
+                        required: true,
+                    },
+                    product_family: {
+                        required: true,
+                    },
+                    product_unit: {
+                        required: true,
+                    },
+                    taxRateCode_Product: {
                         required: true,
                     },
                 },
                 messages: {
-                    family: {
-                        required: "Please Enter family.",
+                    code: {
+                        required: "Please Enter Code.",
+                    },
+                    description: {
+                        required: "Please Enter Description.",
+                    },
+                    product_family: {
+                        required: "Please Enter Product Family.",
+                    },
+                    product_unit: {
+                        required: "Please Enter Product Unit.",
+                    },
+                    taxRateCode_Product: {
+                        required: "Please Enter Product Tax Rate.",
                     },
                 },
                 errorElement: "span",

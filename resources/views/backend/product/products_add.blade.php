@@ -128,13 +128,19 @@
                                         iTaxDescription="{{ $prod->descriptionTextRate }} - {{ $prod->taxRate }}%"
                                         value="{{ $prod->taxRateCode }}"
                                     >
-                                        {{ $prod->taxRateCode }}%
+                                        {{ $prod->taxRate }}%
                                     </option>
                                     @endforeach
                                 </select>
                             </div>
+                             <!-- Product Image File-->
                             <div class="form-group row mb-3">
-                                <!-- Product Image File-->
+                                <label
+                                    for="example-text-input"
+                                    class="col-sm-1 col-form-label"
+                                >
+                                    Img Product</label
+                                >
                                 <div class="col-sm-11">
                                     <input
                                         name="profile_image"
@@ -146,12 +152,6 @@
                             </div>
                             <div class="form-group row mb-3">
                                 <!-- Product Image Foto-->
-                                <label
-                                    for="example-text-input"
-                                    class="col-sm-1 col-form-label"
-                                >
-                                    Img Product</label
-                                >
                                 <div class="col-sm-11">
                                     <img
                                         id="showImage"

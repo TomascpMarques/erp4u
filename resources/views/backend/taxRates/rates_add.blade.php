@@ -126,24 +126,27 @@
                 $("#postalCode option:selected").attr("iLocation")
             );
         });
-    });
-
-    /* $(document).ready(function () {
         $("#myForm").validate({
             rules: {
-                postalCode: {
+                taxRateCode: {
                     required: true,
                 },
-                location: {
+                rate: {
+                    required: true,
+                },
+                description: {
                     required: true,
                 },
             },
             messages: {
-                postalCode: {
-                    required: "Please Enter postalCode.",
+                taxRateCode: {
+                    required: "Please Enter Tax Rate Code.",
                 },
-                location: {
-                    required: "Please Enter location.",
+                rate: {
+                    required: "Please Enter Rate.",
+                },
+                description: {
+                    required: "Please Enter Description.",
                 },
             },
             errorElement: "span",
@@ -158,7 +161,7 @@
                 $(element).removeClass("is-invalid");
             },
         });
-    }); */
+    });
 </script>
 
 @endsection

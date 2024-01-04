@@ -6,82 +6,50 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
 ></script>
+<script src="assets/libs/select2/js/select2.min.js"></script>
+<script src="assets/js/pages/form-advanced.init.js"></script>
+<link
+    href="assets/libs/select2/css/select2.min.css"
+    rel="stylesheet"
+    type="text/css"
+/>
+
 <div class="page-content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Adicionar Tax Rate</h4>
+                        <h4 class="card-title">Adicionar Unit</h4>
                         <br />
 
                         <!--
-                            @if (count($errors))
-    @foreach ($errors->all() as $error)
-    <p class="alert alert-danger alert-dismissible fade show"> {{ $error }} </p>
-    @endforeach
-    @endif -->
+                        @if(count($errors))
+                        @foreach ($errors->all() as $error)
+                        <p class="alert alert-danger alert-dismissible fade show"> {{ $error}} </p>
+                        @endforeach
+
+                        @endif -->
 
                         <form
                             method="post"
-                            action="{{ route('taxRates.update') }}"
+                            action="{{ route('unitMeasures.store') }}"
                             id="myForm"
                         >
                             @csrf
-                            <input
-                                type="hidden"
-                                name="id"
-                                value="{{$taxRates->id}}"
-                            />
                             <div class="row mb-3">
                                 <label
-                                    for="example-text-input"
+                                    for="description"
                                     class="col-sm-2 col-form-label"
-                                    >Code</label
+                                    >Unit</label
                                 >
                                 <div class="form-group col-sm-10">
                                     <input
                                         class="form-control"
                                         type="text"
-                                        value="{{ $taxRates->taxRateCode }}"
-                                        name="taxRateCode"
-                                        id="taxRateCode"
-                                        style="width: 50%"
-                                    />
-                                </div>
-                            </div>
-                            <!-- end row -->
-                            <div class="row mb-3">
-                                <label
-                                    for="name"
-                                    class="col-sm-2 col-form-label"
-                                    >Name</label
-                                >
-                                <div class="form-group col-sm-10">
-                                    <input
-                                        class="form-control"
-                                        type="text"
-                                        value="{{ $taxRates->descriptionTextRate }}"
-                                        name="descriptionTextRate"
-                                        id="descriptionTextRate"
-                                        style="width: 50%"
-                                    />
-                                </div>
-                            </div>
-                            <!-- end row -->
-                            <div class="row mb-3">
-                                <label
-                                    for="address1"
-                                    class="col-sm-2 col-form-label"
-                                    >Address</label
-                                >
-                                <div class="form-group col-sm-10">
-                                    <input
-                                        class="form-control"
-                                        type="text"
-                                        value="{{ $taxRates->taxRate }}"
-                                        name="taxRate"
-                                        id="taxRate"
+                                        name="unit"
+                                        id="unit"
+                                        placeholder="Unit"
                                         style="width: 50%"
                                     />
                                 </div>
@@ -89,10 +57,10 @@
                             <input
                                 type="submit"
                                 class="btn btn-info waves-effect waves-light"
-                                value="Salvar código"
+                                value="Salvar Unit"
                             />
                             <a
-                                href="{{ route('taxRates.all') }}"
+                                href="{{ route('unitMeasures.all') }}"
                                 class="btn btn-secondary btn-rounded waves-effect waves-light"
                                 style="
                                     float: right;
@@ -113,15 +81,33 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
+        $("#postalCode").change(function () {
+            $("#lbLocation").text("");
+            $("#lbLocation").text(
+                $("#postalCode option:selected").attr("iLocation")
+            );
+        });
         $("#myForm").validate({
             rules: {
-                family: {
+                taxRateCode: {
+                    required: true,
+                },
+                rate: {
+                    required: true,
+                },
+                description: {
                     required: true,
                 },
             },
             messages: {
-                family: {
-                    required: "Please Enter family.",
+                taxRateCode: {
+                    required: "Please Enter Tax Rate Code.",
+                },
+                rate: {
+                    required: "Please Enter Rate.",
+                },
+                description: {
+                    required: "Please Enter Description.",
                 },
             },
             errorElement: "span",

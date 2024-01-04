@@ -27,10 +27,18 @@ class ProductController extends Controller
     }
     public function ProductsStore(Request $request)
     {
+        $imageFile = $request->file('profileImage');
+        
+        $transformName = hexdec(uniqid()). "." . $imageFile->getClientOriginalExtension();
+
+        Image::make($imageFile)->resize(200,200)->save('upload/product/'. $transformName);
+        $save_url='upload/product/'. $transformName;
+
+    try{
         Product::insert([
             "code" => $request->code,
             "description" => $request->description,
-            "image" => $request->image,
+            "image" => $save_url,
             "family" => $request->family,
             "unit" => $request->unit,
             "taxRateCode" => $request->taxRateCode,
@@ -38,17 +46,30 @@ class ProductController extends Controller
             "created_at" => Carbon::now(),
             "updated_by" => Auth::user()->id,
         ]);
-        $notification = array(
+            $notification = array(
             'message' => 'Product Inserted',
             'alert-type' => 'success',
         );
         return redirect()->route('product.all')->with($notification);
+    } catch (\Exception $e) {
+        $notification = array(
+            'message' => $e,
+            'alert-type' => 'error',
+        );
+        unlink($save_url);
+        return redirect()->route('product.all')->with($notification);
+    }
+        
     }
     public function ProductsEdit($id)
     {
         try {
+            $families = Family::all();
+            $unitMeasures = UnitMeasure::all();
+            $taxRates = TaxRate::all();
             $product = Product::findOrFail($id);
-            return view('backend.product.product_edit', compact('product'));
+            return view('backend.product.product_edit', compact('families','unitMeasures','taxRates','product'));
+
         } catch (\Exception $e) {
             $notification = array(
                 'message' => $e,

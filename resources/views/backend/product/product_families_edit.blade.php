@@ -12,7 +12,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Adicionar familia de produto</h4>
+                        <h4 class="card-title">Editar familia de produto</h4>
                         <br />
 
                         <!--
@@ -38,7 +38,7 @@
                                 <label
                                     for="example-text-input"
                                     class="col-sm-2 col-form-label"
-                                    >Codigo Postal</label
+                                    >Family</label
                                 >
                                 <div class="form-group col-sm-10">
                                     <input

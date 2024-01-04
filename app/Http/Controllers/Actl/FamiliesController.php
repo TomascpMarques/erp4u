@@ -53,6 +53,8 @@ class FamiliesController extends Controller
         try {
             $postal = Family::find($request->id);
             $postal->family = $request->family;
+            $postal->updated_at = Carbon::now();
+            $postal->updated_by = Auth::user()->id;
             $postal->save();
             $notification = array(
                 'message' => 'Family Updated',

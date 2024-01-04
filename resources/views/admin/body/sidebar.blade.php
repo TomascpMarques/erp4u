@@ -33,6 +33,7 @@
                             <a href="{{ route('supplier.all') }}"> Supplier </a>
                             <a href="{{ route('product.all') }}"> Products </a>
                             <a href="{{ route('taxRates.all') }}"> TaxRates </a>
+                            <a href="{{ route('unitMeasures.all') }}"> Units </a>
                         </li>
                     </ul>
                 </li>

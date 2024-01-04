@@ -24,64 +24,28 @@
 
                         <form
                             method="post"
-                            action="{{ route('taxRates.update') }}"
+                            action="{{ route('unitMeasures.update') }}"
                             id="myForm"
                         >
                             @csrf
                             <input
                                 type="hidden"
                                 name="id"
-                                value="{{$taxRates->id}}"
+                                value="{{$unitMeasures->id}}"
                             />
                             <div class="row mb-3">
                                 <label
                                     for="example-text-input"
                                     class="col-sm-2 col-form-label"
-                                    >Code</label
+                                    >Unit</label
                                 >
                                 <div class="form-group col-sm-10">
                                     <input
                                         class="form-control"
                                         type="text"
-                                        value="{{ $taxRates->taxRateCode }}"
-                                        name="taxRateCode"
-                                        id="taxRateCode"
-                                        style="width: 50%"
-                                    />
-                                </div>
-                            </div>
-                            <!-- end row -->
-                            <div class="row mb-3">
-                                <label
-                                    for="name"
-                                    class="col-sm-2 col-form-label"
-                                    >Name</label
-                                >
-                                <div class="form-group col-sm-10">
-                                    <input
-                                        class="form-control"
-                                        type="text"
-                                        value="{{ $taxRates->descriptionTextRate }}"
-                                        name="descriptionTextRate"
-                                        id="descriptionTextRate"
-                                        style="width: 50%"
-                                    />
-                                </div>
-                            </div>
-                            <!-- end row -->
-                            <div class="row mb-3">
-                                <label
-                                    for="address1"
-                                    class="col-sm-2 col-form-label"
-                                    >Address</label
-                                >
-                                <div class="form-group col-sm-10">
-                                    <input
-                                        class="form-control"
-                                        type="text"
-                                        value="{{ $taxRates->taxRate }}"
-                                        name="taxRate"
-                                        id="taxRate"
+                                        value="{{ $unitMeasures->unit }}"
+                                        name="unit"
+                                        id="unit"
                                         style="width: 50%"
                                     />
                                 </div>
@@ -89,10 +53,10 @@
                             <input
                                 type="submit"
                                 class="btn btn-info waves-effect waves-light"
-                                value="Salvar código"
-                            />
+                                value="Salvar Unit"
+                            /> 
                             <a
-                                href="{{ route('taxRates.all') }}"
+                                href="{{ route('unitMeasures.all') }}"
                                 class="btn btn-secondary btn-rounded waves-effect waves-light"
                                 style="
                                     float: right;
