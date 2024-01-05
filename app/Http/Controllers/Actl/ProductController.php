@@ -36,32 +36,31 @@ class ProductController extends Controller
         Image::make($imageFile)->resize(200, 200)->save('upload/product/' . $transformName);
         $save_url = 'upload/product/' . $transformName;
 
-        Product::insert([
-            "code" => $request->code,
-            "description" => $request->description,
-            "image" => $save_url,
-            "family" => $request->product_family,
-            "unit" => $request->product_unit,
-            "taxRateCode" => $request->product_taxRateCode,
-            "created_by" => Auth::user()->id,
-            "created_at" => Carbon::now(),
-            "updated_by" => Auth::user()->id,
-        ]);
-        $notification = array(
-            'message' => 'Product Inserted',
-            'alert-type' => 'success',
-        );
-        unlink($save_url);
-        return redirect()->route('product.all')->with($notification);
-        /* try {
-         } catch (\Exception $e) {
+        try {
+            Product::insert([
+                "code" => $request->code,
+                "description" => $request->description,
+                "image" => $save_url,
+                "family" => $request->product_family,
+                "unit" => $request->product_unit,
+                "taxRateCode" => $request->product_taxRateCode,
+                "created_by" => Auth::user()->id,
+                "created_at" => Carbon::now(),
+                "updated_by" => Auth::user()->id,
+            ]);
+            $notification = array(
+                'message' => 'Product Inserted',
+                'alert-type' => 'success',
+            );
+            return redirect()->route('product.all')->with($notification);
+        } catch (\Exception $e) {
             $notification = array(
                 'message' => $e,
                 'alert-type' => 'error',
             );
             unlink($save_url);
             return redirect()->route('product.all')->with($notification);
-        } */
+        }
 
     }
     public function ProductsEdit($id)
