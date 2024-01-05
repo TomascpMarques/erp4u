@@ -43,7 +43,16 @@
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $item->code }}</td>
                                             <td>{{ $item->description }}</td>
-                                            <td><img src="{{ asset($item->image) }}" width="60" height="50"></td>
+                                            <td>
+                                                <img
+                                                    srcset="
+                                                        {{ asset($item->image) }},
+                                                        {{ url('upload/no_image.jpg') }}
+                                                    "
+                                                    width="60"
+                                                    height="50"
+                                                >
+                                            </td>
                                             <td>{{ $item->unit }}</td>
                                             <td>{{ $item->family }}</td>
                                             <td>{{ $item['codeRateLink']['taxRate'] }}</td>
