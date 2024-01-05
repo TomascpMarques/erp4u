@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('welcome');
 });
-
+ */
 Route::controller(PostalCodeController::class)->group(function () {
     Route::get("/postalCode/all", "PostalCodeAll")->name("postalCodes.all");
     Route::get("/postalCode/add", "PostalCodeAdd")->name("postalCodes.add");
