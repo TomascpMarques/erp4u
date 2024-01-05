@@ -110,12 +110,23 @@
                                 </div>
                             </div>
                             <!-- Tax Rate -->
-                            <label
-                                for="example-text-input"
-                                class="col-sm-1 col-form-label"
-                                >Tax Rate</label
+                            <div
+                                class="form-group"
+                                style="
+                                    display: flex;
+                                    flex-direction: row;
+                                    flex-wrap: nowrap;
+                                    gap: 1rem;
+                                    width: fit-content;
+                                    align-items: center;
+                                    margin: 1rem 0 1rem 0;
+                                "
                             >
-                            <div class="form-group col-sm-1">
+                                <label
+                                    for="example-text-input"
+                                    class="col-form-label"
+                                    >Tax Rate</label
+                                >
                                 <select
                                     id="product_taxRateCode"
                                     name="product_taxRateCode"
@@ -125,15 +136,19 @@
                                     <option selected=""></option>
                                     @foreach($taxRates as $prod)
                                     <option
-                                        iTaxDescription="{{ $prod->descriptionTextRate }} - {{ $prod->taxRate }}%"
+                                        itaxdescription="{{ $prod->descriptionTextRate && '-' }}  {{ $prod->taxRate }}%"
                                         value="{{ $prod->taxRateCode }}"
                                     >
-                                        {{ $prod->taxRate }}%
+                                        {{ $prod->taxRateCode }}
                                     </option>
                                     @endforeach
                                 </select>
+                                <label
+                                    style="height: fit-content; margin: 0"
+                                    id="1bTaxDescription"
+                                ></label>
                             </div>
-                             <!-- Product Image File-->
+                            <!-- Product Image File-->
                             <div class="form-group row mb-3">
                                 <label
                                     for="example-text-input"
@@ -161,12 +176,6 @@
                                     />
                                 </div>
                             </div>
-                            <label
-                                for="example-text-input"
-                                id="lbTaxDescription"
-                                name="1bTaxDescription"
-                                class="col-sm-4 col-form-label"
-                            ></label>
                             <input
                                 type="submit"
                                 class="btn btn-info waves-effect waves-light"
@@ -200,8 +209,8 @@
         $("#product_taxRateCode").change(function () {
             $("#1bTaxDescription").text("");
             $("#1bTaxDescription").text(
-                $("#product_taxRateCode option: selected").attr(
-                    "iTaxDescription"
+                $("#product_taxRateCode option:selected").attr(
+                    "itaxdescription"
                 )
             );
         });
