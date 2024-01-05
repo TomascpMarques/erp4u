@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Actl;
 
+use Illuminate\Database\QueryException;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -53,7 +54,7 @@ class ProductController extends Controller
                 'alert-type' => 'success',
             );
             return redirect()->route('product.all')->with($notification);
-        } catch (\Exception $e) {
+        } catch (\QueryException $e) {
             $notification = array(
                 'message' => $e,
                 'alert-type' => 'error',
@@ -70,26 +71,35 @@ class ProductController extends Controller
             $unitMeasures = UnitMeasure::all();
             $taxRates = TaxRate::all();
             $product = Product::findOrFail($id);
-            return view('backend.product.product_edit', compact('families', 'unitMeasures', 'taxRates', 'product'));
-
-        } catch (\Exception $e) {
+            return view('backend.product.products_edit', compact('families', 'unitMeasures', 'taxRates', 'product'));
+        } catch (\QueryException $e) {
             $notification = array(
                 'message' => $e,
                 'alert-type' => 'error',
             );
+            return redirect()->route('product.all')->with($notification);
         }
-        return redirect()->route('product.all')->with($notification);
     }
     public function ProductsUpdate(Request $request)
     {
+        if ($request->image != null) {
+            $imageFile = $request->file('image');
+            $transformName = hexdec(uniqid()) . "." . $imageFile->getClientOriginalExtension();
+            //console.log($transformName);
+            Image::make($imageFile)->resize(200, 200)->save('upload/product/' . $transformName);
+            $save_url = 'upload/product/' . $transformName;
+        }
+
         try {
             $product = Product::find($request->id);
             $product->code = $request->code;
             $product->description = $request->description;
-            $product->image = $request->image;
-            $product->family = $request->family;
-            $product->unit = $request->unit;
-            $product->taxRateCode = $request->taxRateCode;
+            if ($request->image != null) {
+                $product->image = $save_url;
+            }
+            $product->family = $request->product_family;
+            $product->unit = $request->product_unit;
+            $product->taxRateCode = $request->product_taxRateCode;
             $product->updated_at = Carbon::now();
             $product->updated_by = Auth::user()->id;
             $product->save();
@@ -97,11 +107,14 @@ class ProductController extends Controller
                 'message' => 'Product Updated',
                 'alert-type' => 'success',
             );
-        } catch (\Exception $e) {
+        } catch (\QueryException $e) {
             $notification = array(
                 'message' => $e,
                 'alert-type' => 'error',
             );
+            if ($request->image != null) {
+                unlink($save_url);
+            }
         }
         return redirect()->route('product.all')->with($notification);
     }
@@ -114,7 +127,7 @@ class ProductController extends Controller
                 'message' => 'Product deleted',
                 'alert-type' => 'success',
             );
-        } catch (\Exception $e) {
+        } catch (\QueryException $e) {
             $notification = array(
                 'message' => $e,
                 'alert-type' => 'error',
