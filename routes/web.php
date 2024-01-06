@@ -6,14 +6,19 @@ use App\Http\Controllers\Actl\FamiliesController;
 use \App\Http\Controllers\Actl\TaxRatesController;
 use App\Http\Controllers\Actl\PostalCodeController;
 use App\Http\Controllers\Actl\UnitMeasureController;
+use App\Http\Controllers\Actl\BarcodeReaderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-
 
 /* Route::get('/', function () {
     return view('welcome');
 });
  */
+
+Route::controller(BarcodeReaderController::class)->group(function () {
+    Route::get("/barcode/reader", "BarcodeReader")->name("barcode.reader");
+})->middleware(['auth', 'verified']);
+
 Route::controller(PostalCodeController::class)->group(function () {
     Route::get("/postalCode/all", "PostalCodeAll")->name("postalCodes.all");
     Route::get("/postalCode/add", "PostalCodeAdd")->name("postalCodes.add");
