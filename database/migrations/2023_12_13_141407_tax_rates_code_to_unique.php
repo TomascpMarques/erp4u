@@ -12,8 +12,8 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::table('Product', function (BLueprint $table) {
-            $table->integer("taxRateCode");
+        Schema::table('TaxRate', function (BLueprint $table) {
+            $table->integer("taxRateCode")->unique()->change();
         });
     }
 
@@ -24,8 +24,6 @@ return new class extends Migration {
      */
     public function down()
     {
-       Schema::table('Product', function (BLueprint $table) {
-            $table->integer("taxRateCode");
-        });
+
     }
 };
