@@ -24,4 +24,12 @@ class Product extends Model
     {
         return $this->belongsTO(TaxRate::class, "taxRateCode", "taxRateCode");
     }
+    public function monitorizacaoLink()
+    {
+        return $this->belongsTO(Monotirazao::class, "code", "monitorizado");
+    }
+    public function parteleiraLink()
+    {
+        return $this->belongsTO(Parteleira::class, "code", "parteleira");
+    }
 }

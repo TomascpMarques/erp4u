@@ -12,9 +12,9 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::table('Product', function (Blueprint $table) {
+       /* Schema::table('Product', function (Blueprint $table) {
             $table->integer("taxRateCode");
-        });
+        }); */
     }
 
     /**
@@ -24,8 +24,8 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::table('Product', function (Blueprint $table) {
+       /* Schema::table('Product', function (Blueprint $table) {
             $table->dropColumn("taxRateCode");
-        });
+        });*/
     }
 };
