@@ -9,6 +9,6 @@ class BarcodeReaderController extends Controller
 {
     public function BarcodeReader()
     {
-        return view('backend.barcode.barcode_reader');
+        return view('backend.barCode.barcode_reader');
     }
 }
