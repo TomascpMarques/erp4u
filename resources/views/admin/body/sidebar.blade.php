@@ -26,12 +26,10 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li>
-                            <a href="{{ route('postalCodes.all') }}">
-                                Postal Codes
-                            </a>
                             <a href="{{ route('families.all') }}"> Families </a>
-                            <a href="{{ route('supplier.all') }}"> Supplier </a>
+                            <a href="{{ route('barcode.reader') }}"> Leitor de Código de Barras </a>
                             <a href="{{ route('product.all') }}"> Products </a>
+                            <a href="{{ route('supplier.all') }}"> Supplier </a>
                             <a href="{{ route('taxRates.all') }}"> TaxRates </a>
                             <a href="{{ route('unitMeasures.all') }}"> Units </a>
                         </li>
