@@ -115,13 +115,25 @@
     $(document).ready(function () {
         $("#myForm").validate({
             rules: {
-                family: {
+                taxRateCode: {
+                    required: true,
+                },
+                taxRate: {
+                    required: true,
+                },
+                descriptionTextRate: {
                     required: true,
                 },
             },
             messages: {
-                family: {
-                    required: "Please Enter family.",
+                taxRateCode: {
+                    required: "Please Enter Tax Rate Code.",
+                },
+                taxRate: {
+                    required: "Please Enter Rate.",
+                },
+                descriptionTextRate: {
+                    required: "Please Enter Description.",
                 },
             },
             errorElement: "span",

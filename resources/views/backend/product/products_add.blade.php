@@ -224,13 +224,43 @@
 
         $("#myForm").validate({
             rules: {
-                family: {
+                code: {
+                    required: true,
+                },
+                description: {
+                    required: true,
+                },
+                product_family: {
+                    required: true,
+                },
+                product_unit: {
+                    required: true,
+                },
+                product_taxRateCode: {
+                    required: true,
+                },
+                image: {
                     required: true,
                 },
             },
             messages: {
-                family: {
-                    required: "Please Enter postalCode.",
+                code: {
+                    required: "Please Enter Code.",
+                },
+                description: {
+                    required: "Please Enter Description.",
+                },
+                product_family: {
+                    required: "Please Enter Product Family.",
+                },
+                product_unit: {
+                    required: "Please Enter Product Unit.",
+                },
+                product_taxRateCode: {
+                    required: "Please Enter Product Tax Rate.",
+                },
+                image: {
+                    required: "Please Enter Product Image.",
                 },
             },
             errorElement: "span",

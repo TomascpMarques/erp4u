@@ -277,7 +277,7 @@
                 code: {
                     required: true,
                 },
-                descritpion: {
+                description: {
                     required: true,
                 },
                 product_family: {
@@ -287,6 +287,9 @@
                     required: true,
                 },
                 taxRateCode_Product: {
+                    required: true,
+                },
+                showImage: {
                     required: true,
                 },
             },
@@ -305,6 +308,9 @@
                 },
                 taxRateCode_Product: {
                     required: "Please Enter Product Tax Rate.",
+                },
+                showImage: {
+                    required: "Please Enter Product Image.",
                 },
             },
             errorElement: "span",

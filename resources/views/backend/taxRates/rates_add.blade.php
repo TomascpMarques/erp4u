@@ -131,10 +131,10 @@
                 taxRateCode: {
                     required: true,
                 },
-                rate: {
+                taxRate: {
                     required: true,
                 },
-                description: {
+                descriptionTextRate: {
                     required: true,
                 },
             },
@@ -142,10 +142,10 @@
                 taxRateCode: {
                     required: "Please Enter Tax Rate Code.",
                 },
-                rate: {
+                taxRate: {
                     required: "Please Enter Rate.",
                 },
-                description: {
+                descriptionTextRate: {
                     required: "Please Enter Description.",
                 },
             },

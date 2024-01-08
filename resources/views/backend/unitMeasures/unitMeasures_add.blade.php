@@ -89,25 +89,13 @@
         });
         $("#myForm").validate({
             rules: {
-                taxRateCode: {
-                    required: true,
-                },
-                rate: {
-                    required: true,
-                },
-                description: {
+                unit: {
                     required: true,
                 },
             },
             messages: {
-                taxRateCode: {
-                    required: "Please Enter Tax Rate Code.",
-                },
-                rate: {
-                    required: "Please Enter Rate.",
-                },
-                description: {
-                    required: "Please Enter Description.",
+                unit: {
+                    required: "Please Enter Unit.",
                 },
             },
             errorElement: "span",

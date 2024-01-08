@@ -34,7 +34,13 @@
                                         <th>Family</th>
                                         <th>Unit</th>
                                         <th>Tax Rate</th>
+                                        <th>Prateleira</th>
+                                        <th>Corredor</th>
+                                        <th>Quantidade</th>
+                                        <th>Monotorizado</th>
+                                        <th>Codigo de Barras</th>
                                         <th>Created by</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -56,6 +62,11 @@
                                             <td>{{ $item->unit }}</td>
                                             <td>{{ $item->family }}</td>
                                             <td>{{ $item['codeRateLink']['taxRate'] }}</td>
+                                            <td>{{ $item->prateleira }}</td>
+                                            <td>{{ $item->corredor }}</td>
+                                            <td>{{ $item->quantidade }}</td>
+                                            <td>Monotorizado</td>
+                                            <td>{{ $item->codBarras }}</td>
                                             <td>{{ $item->created_by }}</td>
                                             <td>
                                                 <a href="{{ route('product.edit', $item->id) }}" class="btn btn-info sm"

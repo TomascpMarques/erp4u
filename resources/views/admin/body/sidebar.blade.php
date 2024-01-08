@@ -32,6 +32,7 @@
                             <a href="{{ route('supplier.all') }}"> Supplier </a>
                             <a href="{{ route('taxRates.all') }}"> TaxRates </a>
                             <a href="{{ route('unitMeasures.all') }}"> Units </a>
+                            <!--<a href="{{ route('parteleira.all') }}"> Parteleiras </a>-->
                         </li>
                     </ul>
                 </li>

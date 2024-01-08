@@ -222,22 +222,46 @@
         });
     });
 
-    /* $(document).ready(function () {
+     $(document).ready(function () {
         $("#myForm").validate({
             rules: {
+                code: {
+                    required: true,
+                },
+                name: {
+                    required: true,
+                },
+                address1: {
+                    required: true,
+                },
+                town: {
+                    required: true,
+                },
                 postalCode: {
                     required: true,
                 },
-                location: {
+                nif: {
                     required: true,
                 },
             },
             messages: {
+                code: {
+                    required: "Please Enter code.",,
+                },
+                name: {
+                    required: "Please Enter name.",
+                },
+                address1: {
+                    required: "Please Enter address1.",
+                },
+                town: {
+                    required: "Please Enter address1.",
+                },
                 postalCode: {
                     required: "Please Enter postalCode.",
                 },
-                location: {
-                    required: "Please Enter location.",
+                nif: {
+                    required: "Please Enter NIF.",
                 },
             },
             errorElement: "span",
@@ -252,7 +276,7 @@
                 $(element).removeClass("is-invalid");
             },
         });
-    }); */
+    }); 
 </script>
 
 @endsection

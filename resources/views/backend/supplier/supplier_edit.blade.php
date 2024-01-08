@@ -108,15 +108,45 @@
         $(document).ready(function() {
             $("#myForm").validate({
                 rules: {
-                    family: {
-                        required: true,
-                    },
+                code: {
+                    required: true,
                 },
-                messages: {
-                    family: {
-                        required: "Please Enter family.",
-                    },
+                name: {
+                    required: true,
                 },
+                address1: {
+                    required: true,
+                },
+                town: {
+                    required: true,
+                },
+                postalCode: {
+                    required: true,
+                },
+                nif: {
+                    required: true,
+                },
+            },
+            messages: {
+                code: {
+                    required: "Please Enter code.",,
+                },
+                name: {
+                    required: "Please Enter name.",
+                },
+                address1: {
+                    required: "Please Enter address1.",
+                },
+                town: {
+                    required: "Please Enter address1.",
+                },
+                postalCode: {
+                    required: "Please Enter postalCode.",
+                },
+                nif: {
+                    required: "Please Enter NIF.",
+                },
+            },
                 errorElement: "span",
                 errorPlacement: function(error, element) {
                     error.addClass("invalid-feedback");

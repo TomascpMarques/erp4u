@@ -134,19 +134,31 @@
     $(document).ready(function () {
         $("#myForm").validate({
             rules: {
-                postalCode: {
+                codParteleira: {
                     required: true,
                 },
-                location: {
+                corredor: {
+                    required: true,
+                },
+                maxItems: {
+                    required: true,
+                },
+                items: {
                     required: true,
                 },
             },
             messages: {
-                postalCode: {
-                    required: "Please Enter postalCode.",
+                codParteleira: {
+                    required: "Please Enter Code.",
                 },
-                location: {
-                    required: "Please Enter location.",
+                corredor: {
+                    required: "Please Enter Corredor.",
+                },
+                maxItems: {
+                    required: "Please Enter Max Items.",
+                },
+                items: {
+                    required: "Please Enter Current Items.",
                 },
             },
             errorElement: "span",

@@ -73,6 +73,15 @@ Route::controller(UnitMeasureController::class)->group(function () {
     Route::get("/unitMeasures/delete/{id}", "unitMeasuresDelete")->name("unitMeasures.delete");
 })->middleware(['auth', 'verified']);
 
+Route::controller(ParteleiraController::class)->group(function () {
+    Route::get("/parteleira/all", "parteleiraAll")->name("parteleira.all");
+    Route::get("/parteleira/add", "parteleiraAdd")->name("parteleira.add");
+    Route::post("/parteleira/add", "parteleiraStore")->name("parteleira.store");
+    Route::get("/parteleira/edit/{id}", "parteleiraEdit")->name("parteleira.edit");
+    Route::post("/parteleira/update", "parteleiraUpdate")->name("parteleira.update");
+    Route::get("/parteleira/delete/{id}", "parteleiraDelete")->name("parteleira.delete");
+})->middleware(['auth', 'verified']);
+
 // Admin All Route
 Route::controller(AdminController::class)->group(function () {
     Route::get('/admin/logout', 'destroy')->name('admin.logout');

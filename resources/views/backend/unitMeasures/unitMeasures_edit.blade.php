@@ -79,13 +79,13 @@
     $(document).ready(function () {
         $("#myForm").validate({
             rules: {
-                family: {
+                unit: {
                     required: true,
                 },
             },
             messages: {
-                family: {
-                    required: "Please Enter family.",
+                unit: {
+                    required: "Please Enter Unit.",
                 },
             },
             errorElement: "span",

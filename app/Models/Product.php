@@ -26,10 +26,10 @@ class Product extends Model
     }
     public function monitorizacaoLink()
     {
-        return $this->belongsTO(Monotirazao::class, "code", "monitorizado");
+        return $this->belongsTO(Monotirazao::class, "monotorizado", "code");
     }
-    public function parteleiraLink()
+    /*public function parteleiraLink()
     {
-        return $this->belongsTO(Parteleira::class, "code", "parteleira");
-    }
+        return $this->belongsTO(Parteleira::class, "parteleira", "code");
+    }*/
 }

@@ -82,7 +82,7 @@
             },
             messages: {
                 family: {
-                    required: "Please Enter postalCode.",
+                    required: "Please Enter Family.",
                 },
             },
             errorElement: "span",
