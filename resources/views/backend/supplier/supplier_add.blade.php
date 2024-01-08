@@ -222,7 +222,7 @@
         });
     });
 
-     $(document).ready(function () {
+    $(document).ready(function () {
         $("#myForm").validate({
             rules: {
                 code: {
@@ -246,7 +246,7 @@
             },
             messages: {
                 code: {
-                    required: "Please Enter code.",,
+                    required: "Please Enter code.",
                 },
                 name: {
                     required: "Please Enter name.",
@@ -276,7 +276,7 @@
                 $(element).removeClass("is-invalid");
             },
         });
-    }); 
+    });
 </script>
 
 @endsection
