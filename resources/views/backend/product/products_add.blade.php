@@ -136,7 +136,7 @@
                                     <option selected=""></option>
                                     @foreach($taxRates as $prod)
                                     <option
-                                        itaxdescription="{{ $prod->descriptionTextRate && '-' }}  {{ $prod->taxRate }}%"
+                                        itaxdescription="{{ $prod->descriptionTextRate }} - {{ $prod->taxRate }}%"
                                         value="{{ $prod->taxRateCode }}"
                                     >
                                         {{ $prod->taxRateCode }}
@@ -213,6 +213,30 @@
                                         max="4"
                                         value="1"
                                     />
+                                    
+                                </div>
+                                <div
+                                    class="form-group"
+                                    style="
+                                        display: flex;
+                                        flex-direction: row;
+                                        flex-wrap: nowrap;
+                                        gap: 1rem;
+                                        width: fit-content;
+                                        align-items: center;
+                                        margin: 1rem 0 1rem 0;
+                                    "
+                                >
+                                    <label class="col-form-label"
+                                        >Quantidade</label
+                                    >
+                                    <input
+                                        id="quantidade"
+                                        name="quantidade"
+                                        class="form-control"
+                                        type="number"
+                                    />
+                                    
                                 </div>
                             </div>
                             <!-- Product Image File-->
@@ -306,7 +330,16 @@
                 product_taxRateCode: {
                     required: true,
                 },
-                image: {
+                profile_image: {
+                    required: true,
+                },
+                prateleira: {
+                    required: true,
+                },
+                corredor: {
+                    required: true,
+                },
+                quantidade: {
                     required: true,
                 },
             },
@@ -326,9 +359,19 @@
                 product_taxRateCode: {
                     required: "Please Enter Product Tax Rate.",
                 },
-                image: {
+                profile_image: {
                     required: "Please Enter Product Image.",
                 },
+                prateleira: {
+                    required: "Please Enter Product Prateleira.",
+                },
+                corredor: {
+                    required: "Please Enter Product Corredor.",
+                },
+                quiantidade: {
+                    required: "Please Enter Product Quantidade.",
+                },
+               
             },
             errorElement: "span",
             errorPlacement: function (error, element) {

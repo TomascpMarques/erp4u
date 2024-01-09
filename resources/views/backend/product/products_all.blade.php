@@ -29,6 +29,7 @@
                                 <thead>
                                     <tr>
                                         <th>Ln</th>
+                                        <th>Code</th>
                                         <th>Description</th>
                                         <th>Image</th>
                                         <th>Family</th>
@@ -38,7 +39,8 @@
                                         <th>Corredor</th>
                                         <th>Quantidade</th>
                                         <th>Codigo de Barras</th>
-                                        <th>Created by</th>
+                                        <th>CB Imagem</th>
+                                        <!--<th>Created by</th>-->
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -61,11 +63,18 @@
                                             <td>{{ $item->unit }}</td>
                                             <td>{{ $item->family }}</td>
                                             <td>{{ $item['codeRateLink']['taxRate'] }}</td>
-                                            <td>{{ $item->prateleira }}</td>
-                                            <td>{{ $item->corredor }}</td>
+                                            <td>{{ $item->prateleira-1 }}</td>
+                                            <td>{{ $item->corredor/2}}</td>
                                             <td>{{ $item->quantidade }}</td>
-                                            <td>{{ $item->codBarras }}</td>
-                                            <td>{{ $item->created_by }}</td>
+                                            <td>{{$item->codBarras}}</td>
+                                            <td>
+                                                <img
+                                                    srcset="https://barcodeapi.org/api/14/{{$item->codBarras}}"
+                                                    width="200"
+                                                    height="100"
+                                                >
+                                            </td>
+                                            <!--<td>{{ $item->created_by }}</td>-->
                                             <td>
                                                 <a href="{{ route('product.edit', $item->id) }}" class="btn btn-info sm"
                                                     title="Edit Data"> <i class="fas fa-edit"></i> </a>
