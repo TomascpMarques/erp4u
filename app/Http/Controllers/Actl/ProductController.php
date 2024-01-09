@@ -100,7 +100,7 @@ class ProductController extends Controller
         try {
             $product = Product::find($request->id);
 
-            DD($product->generateITF14Code());
+            // DD($product->generateITF14Code());
 
             $product->code = $request->code;
             $product->description = $request->description;

@@ -12,7 +12,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Adicionar familia de produto</h4>
+                        <h4 class="card-title">Atualizar Produto</h4>
                         <br />
                         <form
                             method="post"
@@ -39,7 +39,7 @@
                                         name="code"
                                         class="form-control"
                                         type="text"
-                                        value="{{$product->id}}"
+                                        value="{{$product->code}}"
                                     />
                                 </div>
                                 <!-- Product Description -->
@@ -166,10 +166,10 @@
                                         >
                                             @foreach($taxRates as $prod)
                                             <option
-                                                itaxdescription="{{ $prod->descriptionTextRate && '-' }}  {{ $prod->taxRate }}%"
+                                                itaxdescription="{{ $prod->descriptionTextRate}} - {{ $prod->taxRate }}%"
                                                 value="{{ $prod->taxRateCode }}"
                                             >
-                                                {{ $prod->taxRateCode }}
+                                                {{ $prod->taxRate }}
                                             </option>
                                             @endforeach
                                         </select>
