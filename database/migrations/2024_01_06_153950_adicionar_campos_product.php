@@ -14,7 +14,6 @@ return new class extends Migration {
     {
         Schema::table('Product', function (Blueprint $table) {
             $table->string("codBarras", 14);
-            $table->string('monitorizado');
             $table->string('parteleira');
         });
     }
@@ -28,7 +27,6 @@ return new class extends Migration {
     {
         Schema::table('Product', function (Blueprint $table) {
             $table->dropColumn("codBarras");
-            $table->dropColumn("monitorizado");
             $table->dropColumn("parteleira");
         });
     }

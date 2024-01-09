@@ -37,7 +37,6 @@
                                         <th>Prateleira</th>
                                         <th>Corredor</th>
                                         <th>Quantidade</th>
-                                        <th>Monotorizado</th>
                                         <th>Codigo de Barras</th>
                                         <th>Created by</th>
                                         <th>Action</th>
@@ -65,7 +64,6 @@
                                             <td>{{ $item->prateleira }}</td>
                                             <td>{{ $item->corredor }}</td>
                                             <td>{{ $item->quantidade }}</td>
-                                            <td>Monotorizado</td>
                                             <td>{{ $item->codBarras }}</td>
                                             <td>{{ $item->created_by }}</td>
                                             <td>
