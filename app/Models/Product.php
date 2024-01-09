@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Monitorizacao;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
 {
@@ -14,19 +16,19 @@ class Product extends Model
 
     public function familyLink()
     {
-        return $this->belongsTO(Family::class, "family", "family");
+        return $this->hasOne(Family::class, "family", "family");
     }
     public function unitMeasureLink()
     {
-        return $this->belongsTO(UnitMeasure::class, "unit", "unit");
+        return $this->hasOne(UnitMeasure::class, "unit", "unit");
     }
     public function codeRateLink()
     {
-        return $this->belongsTO(TaxRate::class, "taxRateCode", "taxRateCode");
+        return $this->hasOne(TaxRate::class, "taxRateCode", "taxRateCode");
     }
-    public function monitorizacaoLink()
+    public function monitorizacao(): HasMany
     {
-        return $this->belongsTO(Monotirazao::class, "monotorizado", "code");
+        return $this->hasMany(Monitorizacao::class, "product_id");
     }
     /*public function parteleiraLink()
     {

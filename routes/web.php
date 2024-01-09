@@ -7,6 +7,7 @@ use \App\Http\Controllers\Actl\TaxRatesController;
 use App\Http\Controllers\Actl\PostalCodeController;
 use App\Http\Controllers\Actl\UnitMeasureController;
 use App\Http\Controllers\Actl\BarcodeReaderController;
+use App\Http\Controllers\Actl\MonitorizacaoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 
@@ -80,6 +81,15 @@ Route::controller(ParteleiraController::class)->group(function () {
     Route::get("/parteleira/edit/{id}", "parteleiraEdit")->name("parteleira.edit");
     Route::post("/parteleira/update", "parteleiraUpdate")->name("parteleira.update");
     Route::get("/parteleira/delete/{id}", "parteleiraDelete")->name("parteleira.delete");
+})->middleware(['auth', 'verified']);
+
+Route::controller(MonitorizacaoController::class)->group(function () {
+    Route::get("/monitor/all", "MonitorAll")->name("monitor.all");
+    Route::get("/monitor/add", "MonitorAdd")->name("monitor.add");
+    Route::post("/monitor/add", "MonitorStore")->name("monitor.store");
+    Route::get("/monitor/edit/{id}", "MonitorEdit")->name("monitor.edit");
+    Route::post("/monitor/update", "MonitorUpdate")->name("monitor.update");
+    Route::get("/monitor/delete/{id}", "MonitorDelete")->name("monitor.delete");
 })->middleware(['auth', 'verified']);
 
 // Admin All Route

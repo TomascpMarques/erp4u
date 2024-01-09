@@ -12,10 +12,8 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::table('Product', function (Blueprint $table) {
-            $table->string("codBarras", 14);
-            $table->string('monitorizado');
-            $table->string('parteleira');
+        Schema::table('monitorizacao', function (Blueprint $table) {
+            $table->string('regra_envio');
         });
     }
 
@@ -26,10 +24,8 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::table('Product', function (Blueprint $table) {
-            $table->dropColumn("codBarras");
-            $table->dropColumn("monitorizado");
-            $table->dropColumn("parteleira");
+        Schema::table('monitorizacao', function (Blueprint $table) {
+            $table->dropColumn('regra_envio');
         });
     }
 };
