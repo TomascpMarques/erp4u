@@ -73,7 +73,7 @@
                                 <label
                                     for="address1"
                                     class="col-sm-2 col-form-label"
-                                    >Address</label
+                                    >Rate</label
                                 >
                                 <div class="form-group col-sm-10">
                                     <input

@@ -193,7 +193,7 @@
                                 value="Salvar código"
                             />
                             <a
-                                href="{{ route('postalCodes.all') }}"
+                                href="{{ route('supplier.all') }}"
                                 class="btn btn-secondary btn-rounded waves-effect waves-light"
                                 style="
                                     float: right;
@@ -220,9 +220,7 @@
                 $("#postalCode option:selected").attr("iLocation")
             );
         });
-    });
 
-     $(document).ready(function () {
         $("#myForm").validate({
             rules: {
                 code: {
@@ -246,7 +244,7 @@
             },
             messages: {
                 code: {
-                    required: "Please Enter code.",,
+                    required: "Please Enter code.",
                 },
                 name: {
                     required: "Please Enter name.",
@@ -276,7 +274,8 @@
                 $(element).removeClass("is-invalid");
             },
         });
-    }); 
+
+    });
 </script>
 
 @endsection
