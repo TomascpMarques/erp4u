@@ -45,6 +45,7 @@
                             <a href="{{ route('unitMeasures.all') }}">
                                 Units
                             </a>
+                            <a href="{{ route('postalCodes.all') }}"> Postal Code </a>
                             <!--<a href="{{ route('parteleira.all') }}"> Parteleiras </a>-->
                         </li>
                     </ul>

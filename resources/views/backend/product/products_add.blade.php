@@ -139,7 +139,7 @@
                                         itaxdescription="{{ $prod->descriptionTextRate }} - {{ $prod->taxRate }}%"
                                         value="{{ $prod->taxRateCode }}"
                                     >
-                                        {{ $prod->taxRateCode }}
+                                        {{ $prod->taxRate }}
                                     </option>
                                     @endforeach
                                 </select>
