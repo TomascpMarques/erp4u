@@ -221,6 +221,7 @@
             );
         });
 
+    $(document).ready(function () {
         $("#myForm").validate({
             rules: {
                 code: {
@@ -274,8 +275,7 @@
                 $(element).removeClass("is-invalid");
             },
         });
-
-    });
+    }); 
 </script>
 
 @endsection
