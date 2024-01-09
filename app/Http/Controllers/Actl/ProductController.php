@@ -38,12 +38,15 @@ class ProductController extends Controller
         $save_url = 'upload/product/' . $transformName;
 
         try {
+            $productITF14 = Product::gerarCodigoITF14($request->code, $request->corredor, $request->prateleira);
+
             Product::insert([
                 "code" => $request->code,
                 "description" => $request->description,
                 "image" => $save_url,
                 "family" => $request->product_family,
                 "unit" => $request->product_unit,
+                "codBarras" => $productITF14,
                 "taxRateCode" => $request->product_taxRateCode,
                 "created_by" => Auth::user()->id,
                 "created_at" => Carbon::now(),
@@ -64,6 +67,7 @@ class ProductController extends Controller
         }
 
     }
+
     public function ProductsEdit($id)
     {
         try {
@@ -92,6 +96,9 @@ class ProductController extends Controller
 
         try {
             $product = Product::find($request->id);
+
+            DD($product->generateITF14Code());
+
             $product->code = $request->code;
             $product->description = $request->description;
             if ($request->image != null) {

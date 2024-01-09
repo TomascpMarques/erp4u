@@ -148,6 +148,73 @@
                                     id="1bTaxDescription"
                                 ></label>
                             </div>
+                            <div
+                                class="form-group"
+                                style="
+                                    display: flex;
+                                    flex-direction: row;
+                                    flex-wrap: nowrap;
+                                    gap: 1rem;
+                                    width: fit-content;
+                                    align-items: center;
+                                    margin: 1rem 0 1rem 0;
+                                "
+                            >
+                                <div
+                                    class="form-group"
+                                    style="
+                                        display: flex;
+                                        flex-direction: row;
+                                        flex-wrap: nowrap;
+                                        gap: 1rem;
+                                        width: fit-content;
+                                        align-items: center;
+                                        margin: 1rem 0 1rem 0;
+                                    "
+                                >
+                                    <label
+                                        for="prateleira"
+                                        class="col-form-label"
+                                        >Prateleira</label
+                                    >
+                                    <input
+                                        id="prateleira"
+                                        name="prateleira"
+                                        class="form-control"
+                                        type="number"
+                                        value="1"
+                                        step="1"
+                                        min="1"
+                                        max="7"
+                                    />
+                                </div>
+                                <div
+                                    class="form-group"
+                                    style="
+                                        display: flex;
+                                        flex-direction: row;
+                                        flex-wrap: nowrap;
+                                        gap: 1rem;
+                                        width: fit-content;
+                                        align-items: center;
+                                        margin: 1rem 0 1rem 0;
+                                    "
+                                >
+                                    <label for="corredor" class="col-form-label"
+                                        >Corredor</label
+                                    >
+                                    <input
+                                        id="corredor"
+                                        name="corredor"
+                                        class="form-control"
+                                        type="number"
+                                        min="1"
+                                        step="1"
+                                        max="4"
+                                        value="1"
+                                    />
+                                </div>
+                            </div>
                             <!-- Product Image File-->
                             <div class="form-group row mb-3">
                                 <label
