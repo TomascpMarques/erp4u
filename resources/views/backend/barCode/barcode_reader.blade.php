@@ -33,6 +33,30 @@
         font-size: 16px;
         cursor: pointer;
     }
+
+    .twoColumDisplay {
+        display: flex;
+        width: 100%;
+        height: 100vh;
+        border-radius: 0.25rem;
+        background: white;
+        margin-bottom: 2rem;
+        padding: 1.25rem;
+    }
+
+    .left,
+    .right {
+        padding: 0.1rem 1rem;
+        flex: 1;
+    }
+
+    .left > h3,
+    .right > h3 {
+        text-align: center;
+        border-bottom: 1px solid gainsboro;
+        padding: 0.5rem;
+        padding-bottom: 0.7rem;
+    }
 </style>
 
 <div class="page-content">
@@ -43,31 +67,38 @@
     </div>
     <div class="card">
         <div class="card-body">
+            <h4>Ações</h4>
+            <p></p>
             <button
                 id="startScanButton"
                 onclick="startScan()"
-                class="btn btn-primary btn-rounded waves-effect waves-light"
+                class="btn btn-primary waves-effect waves-light"
             >
                 Iniciar Scan
             </button>
             <button
                 id="stopScanButton"
                 onclick="stopScan()"
-                class="btn btn-danger btn-rounded waves-effect waves-light"
+                class="btn btn-danger waves-effect waves-light"
             >
                 Parar Scan
             </button>
             <div id="camera">
                 <div id="scan-line"></div>
             </div>
-            <br />
-            <br />
             <div id="resultado"></div>
         </div>
     </div>
     <section class="twoColumDisplay">
-        <section class="left"></section>
-        <section class="right"></section>
+        <section class="left">
+            <h3>Produto</h3>
+        </section>
+        <hr
+            style="height: 100%; width: 1px; margin: auto; border-radius: 999px"
+        />
+        <section class="right">
+            <h3>Mapa</h3>
+        </section>
     </section>
 </div>
 

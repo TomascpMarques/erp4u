@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-use function Faker\Provider\pt_BR\check_digit;
-
 class Product extends Model
 {
     use HasFactory;

@@ -33,23 +33,31 @@ class MonitorizacaoController extends Controller
     public function MonitorStore(Request $request)
     {
         try {
-            $monitor = Monitorizacao::find($request->id);
+            $regra = "";
+
+            $monitor = new Monitorizacao();
+
             $monitor->product_id = $request->code;
             $monitor->code = $request->code;
             $monitor->ativa = $request->ativa;
             $monitor->sujeito = $request->sujeito;
             $monitor->tema = $request->tema;
+            $monitor->regra_envio = "";
             $monitor->conteudo = $request->conteudo;
             $monitor->updated_at = Carbon::now();
+            $monitor->created_at = Carbon::now();
+            $monitor->created_by = Auth::user()->id;
             $monitor->updated_by = Auth::user()->id;
+
             $monitor->save();
+            DD($monitor->id);
 
             $notification = array(
                 'message' => 'Monitorização Inserted',
                 'alert-type' => 'success',
             );
             return redirect()->route('monitor.all')->with($notification);
-        } catch (\QueryException $e) {
+        } catch (\Exception $e) {
             $notification = array(
                 'message' => $e,
                 'alert-type' => 'error',
