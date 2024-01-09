@@ -129,7 +129,7 @@
             },
             messages: {
                 code: {
-                    required: "Please Enter code.",,
+                    required: "Please Enter code.",
                 },
                 name: {
                     required: "Please Enter name.",
