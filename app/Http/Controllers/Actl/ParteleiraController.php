@@ -50,7 +50,7 @@ class ParteleiraController extends Controller
     public function ParteleiraEdit($id)
     {
         try {
-            
+
             $parteleiras = Parteleira::findOrFail($id);
             return view('backend.parteleira.parteleira_edit', compact('parteleiras'));
         } catch (\QueryException $e) {

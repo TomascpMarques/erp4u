@@ -6,6 +6,7 @@ use App\Models\Monitorizacao;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Product extends Model
 {
@@ -26,12 +27,8 @@ class Product extends Model
     {
         return $this->hasOne(TaxRate::class, "taxRateCode", "taxRateCode");
     }
-    public function monitorizacao(): HasMany
+    public function monitorizacao(): HasOne
     {
-        return $this->hasMany(Monitorizacao::class, "product_id");
+        return $this->hasOne(Monitorizacao::class, "product_id");
     }
-    /*public function parteleiraLink()
-    {
-        return $this->belongsTO(Parteleira::class, "parteleira", "code");
-    }*/
 }
