@@ -76,6 +76,7 @@
                                     </select>
                                 </div>
                             </div>
+                            <!-- REGRAS -->
                             <div class="row mb-3">
                                 <label
                                     for="Regra"
@@ -83,115 +84,67 @@
                                     >Regras</label
                                 >
                                 <div
-                                    class="form-group col-md-10"
+                                    class="col-sm-10"
                                     style="
                                         display: flex;
                                         flex-direction: column;
-                                        gap: 1rem;
-                                        align-items: start;
                                     "
                                 >
                                     <div
                                         style="
+                                            margin-top: 1rem;
                                             display: flex;
                                             flex-direction: row;
-                                            gap: 1rem;
+                                            gap: 0.5rem;
                                             align-items: center;
-                                            width: 100%;
-                                            padding: 0.5rem 0rem 0.5rem 0rem;
                                         "
                                     >
-                                        <p
+                                        <a
+                                            id="addRegra"
                                             style="
-                                                margin: 0;
-                                                font-size: 1rem;
-                                                color: #102115;
-                                                border: 1px solid;
-                                                border-color: gainsboro;
-                                                border-radius: 0.5rem;
-                                                padding: 0.3rem 1rem;
-                                                font-weight: bolder;
+                                                width: min-content;
+                                                border: 1px solid blue;
+                                                color: white;
+                                                font-weight: bold;
+                                                background: blue;
+                                                height: min-content;
+                                                padding: 0.2rem 0.6rem;
+                                                border-radius: 4px;
+                                            "
+                                            class="btn"
+                                        >
+                                            +
+                                        </a>
+                                        <div
+                                            style="
+                                                display: flex;
+                                                flex-direction: row;
+                                                gap: 0.5rem;
                                             "
                                         >
-                                            Quando
-                                        </p>
-                                        <select
-                                            style="width: fit-content"
-                                            name="condicaoAlvo"
-                                            id="condicaoAlvo"
-                                            class="form-select select1"
-                                        >
-                                            <option value="stock">
-                                                Quantidade
-                                            </option>
-                                            <option value="corredor">
-                                                Corredor
-                                            </option>
-                                            <option value="prateleira">
-                                                Prateleira
-                                            </option>
-                                            <option value="descricao">
-                                                Descrição
-                                            </option>
-                                            <option value="unit">
-                                                Unidade
-                                            </option>
-                                            <option value="familia">
-                                                Familia
-                                            </option>
-                                        </select>
-                                        <p
-                                            style="
-                                                margin: 0;
-                                                font-size: 0.95rem;
-                                                color: #303030;
-                                            "
-                                        >
-                                            for
-                                        </p>
-                                        <select
-                                            style="width: fit-content"
-                                            name="condicaoRegra"
-                                            id="condicaoRegra"
-                                            class="form-select select1"
-                                        >
-                                            <option value=">">Maior</option>
-                                            <option value="<">Menor</option>
-                                            <option value="=">Igual</option>
-                                            <option value="!">Diferente</option>
-                                        </select>
-                                        <p
-                                            style="
-                                                margin: 0;
-                                                font-size: 0.95rem;
-                                                color: #303030;
-                                            "
-                                        >
-                                            que
-                                        </p>
-                                        <input
-                                            class="form-control"
-                                            type="text"
-                                            name="valorRegra"
-                                            id="valorRegra"
-                                            placeholder="20"
-                                            maxlength="10"
-                                            style="
-                                                max-width: 15rem;
-                                                width: fit-content;
-                                            "
-                                        />
-                                        <p
-                                            style="
-                                                margin: 0;
-                                                font-size: 0.95rem;
-                                                color: #303030;
-                                                min-width: fit-content;
-                                            "
-                                        >
-                                            envia a mensagem.
-                                        </p>
+                                            <p
+                                                style="
+                                                    margin: 0;
+                                                    font-weight: bold;
+                                                "
+                                            >
+                                                Regras:
+                                            </p>
+                                            <p
+                                                style="margin: 0"
+                                                id="regraCounter"
+                                            >
+                                                0/10
+                                            </p>
+                                        </div>
                                     </div>
+                                    <input
+                                        type="text"
+                                        style="display: none"
+                                        name="regrasDef"
+                                        id="regrasDef"
+                                    />
+                                    <section id="regras"></section>
                                 </div>
                             </div>
                             <!-- end row -->
@@ -274,7 +227,42 @@
 <script type="text/javascript">
     let simplemde = new SimpleMDE();
 
+    let rules = new Array(10);
+
     $(document).ready(function () {
+        document.getElementById("myForm").addEventListener(
+            "submit",
+            function (event) {
+                const data = document.getElementById("regrasDef");
+                data.value = rules
+                    .filter((x) => x !== null && x !== "")
+                    .join(" and ");
+                return true;
+            },
+            false
+        );
+        $("#addRegra").click(function () {
+            let regras_section = document.getElementById("regras");
+            let rules_count =
+                document.getElementById("regraCounter").children.length;
+
+            if (rules_count == 10) {
+                return;
+            }
+
+            if (rules[rules_count] == null) {
+                rules[rules_count] = "";
+            }
+
+            let regra = document.createElement("div");
+            regra.setAttribute("data-index", regras_section.children.length);
+            regra.innerHTML = regra_inputs(regras_section.children.length);
+            regras_section.appendChild(regra);
+
+            document.getElementById("regraCounter").textContent = `${
+                document.getElementById("regras").children.length
+            }/10`;
+        });
         $("#postalCode").change(function () {
             $("#lbLocation").text("");
             $("#lbLocation").text(
@@ -317,5 +305,40 @@
             },
         });
     });
+
+    function updateRule(rule_id) {
+        console.log(rule_id);
+        let condicaoAlvo = document.getElementById(
+            `condicaoAlvo-${rule_id}`
+        ).value;
+        let condicaoRegra = document.getElementById(
+            `condicaoRegra-${rule_id}`
+        ).value;
+        let valorRegra = document.getElementById(`valorRegra-${rule_id}`).value;
+
+        let condition = `${condicaoAlvo} ${condicaoRegra} ${valorRegra}`;
+        rules[rule_id] = condition;
+
+        console.log(rules);
+    }
+
+    function removeRule(rule_id) {
+        document.getElementById(`rule-${rule_id}`).remove();
+        rules[rule_id] = null;
+        rules = rules.filter((x) => x !== null);
+        let rules_count = document
+            .getElementById("regras")
+            .children.item(rule_id)
+            .remove();
+        let regras_counter = (document.getElementById(
+            "regraCounter"
+        ).textContent = `${
+            document.getElementById("regras").children.length
+        }/10`);
+    }
+
+    let regra_inputs = function (rule_id) {
+        return `<div id="rule-${rule_id}" style="display:flex;flex-direction:row;gap:1rem;align-items:center;width:100%;padding:.5rem 0 .5rem 0"><p style="margin:0;font-size:1rem;color:#102115;border:1px solid;border-color:#dcdcdc;border-radius:.5rem;padding:.3rem 1rem;font-weight:bolder">Quando</p><select style="width:fit-content" id="condicaoAlvo-${rule_id}" class="form-select select1"><option value="">Selecione</option><option value="quantidade">Quantidade</option><option value="corredor">Corredor</option><option value="prateleira">Prateleira</option><option value="descricao">Descrição</option><option value="unit">Unidade</option><option value="familia">Familia</option></select><p style="margin:0;font-size:.95rem;color:#303030">for</p><select style="width:fit-content" id="condicaoRegra-${rule_id}" class="form-select select1"><option value="">Selecione</option><option value=">">Maior</option><option value="<">Menor</option><option value="=">Igual</option><option value="!">Diferente</option></select><p style="margin:0;font-size:.95rem;color:#303030">que</p><input class="form-control" type="text" id="valorRegra-${rule_id}" placeholder="20" maxlength="10" style="max-width:15rem;width:fit-content" value="30"><p style="margin:0;font-size:.95rem;color:#303030;min-width:fit-content">envia a mensagem.</p><a onclick="updateRule( ${rule_id} )" href="#" style="font-size:1.5rem">🔄️</a><a onclick="removeRule( ${rule_id} )" href="#" style="font-size:1.5rem">❌</a></div>`;
+    };
 </script>
 @endsection

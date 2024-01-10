@@ -13,7 +13,7 @@
     .main {
         display: flex;
         flex-direction: column;
-        max-width: 70vw;
+        max-width: 85vw;
         margin: auto;
         height: 100%;
         position: relative;
@@ -43,7 +43,7 @@
         color: gray;
     }
 
-    footer>p {
+    footer > p {
         position: relative;
         float: right;
         width: fit-content;
