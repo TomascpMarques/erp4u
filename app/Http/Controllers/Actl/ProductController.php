@@ -23,8 +23,8 @@ class ProductController extends Controller
             $product->quantidade = $product->quantidade + $quantity;
             $product->save();
         } catch (Exception $e) {
-
         }
+        response()->json(['success' => 'success'], 200);
     }
 
     public function ProductsSellOne($id)
@@ -36,6 +36,7 @@ class ProductController extends Controller
         } catch (Exception $e) {
 
         }
+        response()->json(['success' => 'success'], 200);
     }
 
     public function ProductsAll()
