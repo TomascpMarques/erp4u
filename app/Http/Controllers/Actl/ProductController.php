@@ -11,11 +11,33 @@ use App\Http\Controllers\Controller;
 use App\Models\Family;
 use App\Models\TaxRate;
 use App\Models\UnitMeasure;
-
+use Exception;
 use Image;
 
 class ProductController extends Controller
 {
+    public function ProductsBuy($quantity, $id)
+    {
+        try {
+            $product = Product::find($id);
+            $product->quantidade = $product->quantidade + $quantity;
+            $product->save();
+        } catch (Exception $e) {
+
+        }
+    }
+
+    public function ProductsSellOne($id)
+    {
+        try {
+            $product = Product::find($id);
+            $product->quantidade = $product->quantidade - 1;
+            $product->save();
+        } catch (Exception $e) {
+
+        }
+    }
+
     public function ProductsAll()
     {
         $products = Product::latest()->get();
@@ -149,7 +171,7 @@ class ProductController extends Controller
     public function ProductsGetOne($id)
     {
         try {
-           $product=Product::select('*')->Where ('codBarras',$id)->get();
+            $product = Product::select('*')->Where('codBarras', $id)->get();
             return $product;
         } catch (\QueryException $e) {
 
