@@ -54,6 +54,7 @@ Route::controller(ProductController::class)->group(function () {
     Route::get("/products/edit/{id}", "ProductsEdit")->name("product.edit");
     Route::post("/products/update", "ProductsUpdate")->name("product.update");
     Route::get("/products/delete/{id}", "ProductsDelete")->name("product.delete");
+    Route::get("/products/getOne/{id}","ProductsGetOne")->name("product.getOne");
 })->middleware(['auth', 'verified']);
 
 Route::controller(TaxRatesController::class)->group(function () {

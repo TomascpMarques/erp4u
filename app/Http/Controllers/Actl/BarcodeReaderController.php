@@ -9,6 +9,8 @@ class BarcodeReaderController extends Controller
 {
     public function BarcodeReader()
     {
-        return view('backend.barCode.barcode_reader');
+        $products = Product::latest()->get();
+        return view(('backend.barCode.barcode_reader'), compact('products'));
     }
+
 }

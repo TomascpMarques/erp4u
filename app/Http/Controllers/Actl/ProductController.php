@@ -145,4 +145,15 @@ class ProductController extends Controller
         }
         return redirect()->route('product.all')->with($notification);
     }
+
+    public function ProductsGetOne($id)
+    {
+        try {
+           $product=Product::select('*')->Where ('codBarras',$id)->get();
+            return $product;
+        } catch (\QueryException $e) {
+
+        }
+
+    }
 }

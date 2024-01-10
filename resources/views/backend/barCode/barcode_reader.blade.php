@@ -90,8 +90,31 @@
         </div>
     </div>
     <section class="twoColumDisplay">
-        <section class="left">
+        <section class="left" id="secProduto">
             <h3>Produto</h3>
+            <table
+                id="prodTable"
+                class="table table-bordered nowrap"
+                style="
+                    border-collapse: collapse;
+                    border-spacing: 0;
+                    width: 100%;
+                "
+            >
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Description</th>
+                        <th>Image</th>
+                        <th>Family</th>
+                        <th>Unit</th>
+                        <th>Tax Rate</th>
+                        <th>Prateleira</th>
+                        <th>Corredor</th>
+                        <th>Quantidade</th>
+                    </tr>
+                </thead>
+            </table>
         </section>
         <hr
             style="height: 100%; width: 1px; margin: auto; border-radius: 999px"
@@ -179,6 +202,41 @@
         }
     }
 
-    function handleBarCodeRead() {}
+    function handleBarCodeRead() {
+        fetch("/products/getOne/"+ code)
+            .then((response) => {
+                // Check if the request was successful
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                // Parse the JSON response
+                return response.json();
+            })
+            .then((data) => {
+                // Access the information from the parsed JSON data
+                console.log(data); // This will log the entire JSON data
+
+                // Access specific information (change accordingly)
+                const code = data.code;
+                const description = data.description;
+                const image = data.image;
+                const family = data.family;
+                const unit = data.unit;
+                const taxRateCode = data.taxRateCode;
+                const prateleira = data.prateleira;
+                const corredor = data.corredor;
+                const quantidade = data.quantidade;
+
+                console.log(itemName); // Log the item name
+                console.log(itemDescription); // Log the item description
+            })
+            .catch((error) => {
+                // Handle errors during the fetch or parsing
+                console.error(
+                    "There was a problem with the fetch operation:",
+                    error
+                );
+            });
+    }
 </script>
 @endsection
