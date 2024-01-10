@@ -235,6 +235,7 @@
                                         name="quantidade"
                                         class="form-control"
                                         type="number"
+                                        min="1"
                                     />
                                     
                                 </div>
