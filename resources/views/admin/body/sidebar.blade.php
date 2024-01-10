@@ -13,12 +13,13 @@
                         class="has-arrow waves-effect"
                     >
                         <i class="ri-tools-fill"></i>
-                        <span>Settings</span>
+                        <span>Business Partners</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="">Opção 1</a></li>
-                        <li><a href="">Opção 2</a></li>
-                        <li><a href="">Opção 3</a></li>
+                        <li>
+                        <a href="{{ route('supplier.all') }}"> Supplier </a>
+                        <a href="{{ route('postalCodes.all') }}"> Postal Code </a>
+                    </li>
                     </ul>
                 </li>
 
@@ -28,11 +29,11 @@
                         class="has-arrow waves-effect"
                     >
                         <i class="ri-table-2"></i>
-                        <span>Common Tables</span>
+                        <span>Produção</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li>
-                            <a href="{{ route('families.all') }}"> Families </a>
+                           <!-- <a href="{{ route('families.all') }}"> Families </a>-->
                             <a href="{{ route('barcode.reader') }}">
                                 Leitor de Código de Barras
                             </a>
@@ -40,18 +41,16 @@
                                 Monitorização
                             </a>
                             <a href="{{ route('product.all') }}"> Products </a>
-                            <a href="{{ route('supplier.all') }}"> Supplier </a>
                             <a href="{{ route('taxRates.all') }}"> TaxRates </a>
                             <a href="{{ route('unitMeasures.all') }}">
                                 Units
                             </a>
-                            <a href="{{ route('postalCodes.all') }}"> Postal Code </a>
                             <!--<a href="{{ route('parteleira.all') }}"> Parteleiras </a>-->
                         </li>
                     </ul>
                 </li>
 
-                <li>
+               <!-- <li>
                     <a
                         href="javascript: void(0);"
                         class="has-arrow waves-effect"
@@ -87,7 +86,7 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="">Opção 1</a></li>
                     </ul>
-                </li>
+                </li>-->
 
                 <li class="menu-title">Infrastructure</li>
 
