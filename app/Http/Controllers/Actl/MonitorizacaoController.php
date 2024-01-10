@@ -2,38 +2,33 @@
 
 namespace App\Http\Controllers\Actl;
 
-use App\Mail\RuleStateChange;
+
 use App\Models\Monitorizacao;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 
 
 class MonitorizacaoController extends Controller
 {
-    private function sendEmailOnRuleActivationChange($id, $subject, $monitor): void
-    {
-        Mail::to($subject)->send(new RuleStateChange($monitor));
-    }
-
     public function MonitorAll()
     {
         $monitors = Monitorizacao::all();
+        $x = Monitorizacao::find(12);
+
         return view('backend.monitorizacao.monitor_all', compact('monitors'));
     }
     public function MonitorAdd()
     {
         $products = Product::select('code', 'description')->get();
-        $productIdsArray = Product::select('code')->get();
+        $productIdsArray = Product::select('code')->whereNotIn('code', Monitorizacao::select('code')->get())->get();
         return view('backend.monitorizacao.monitor_add', compact('products', 'productIdsArray'));
     }
     public function MonitorStore(Request $request)
     {
         try {
-            $regra = "";
 
             $monitor = new Monitorizacao();
 
@@ -42,7 +37,7 @@ class MonitorizacaoController extends Controller
             $monitor->ativa = $request->ativa;
             $monitor->sujeito = $request->sujeito;
             $monitor->tema = $request->tema;
-            $monitor->regra_envio = "";
+            $monitor->regra_envio = $request->regrasDef;
             $monitor->conteudo = $request->conteudo;
             $monitor->updated_at = Carbon::now();
             $monitor->created_at = Carbon::now();
@@ -50,7 +45,6 @@ class MonitorizacaoController extends Controller
             $monitor->updated_by = Auth::user()->id;
 
             $monitor->save();
-            DD($monitor->id);
 
             $notification = array(
                 'message' => 'Monitorização Inserted',
@@ -73,7 +67,7 @@ class MonitorizacaoController extends Controller
             $monitor = Monitorizacao::find($id);
             // DD($monitor);
             return view('backend.monitorizacao.monitor_edit', compact('monitor', 'productIdsArray'));
-        } catch (\QueryException $e) {
+        } catch (QueryException $e) {
             $notification = array(
                 'message' => $e,
                 'alert-type' => 'error',
@@ -93,8 +87,6 @@ class MonitorizacaoController extends Controller
             $monitor->updated_at = Carbon::now();
             $monitor->updated_by = Auth::user()->id;
             $monitor->save();
-
-            $this->sendEmailOnRuleActivationChange($monitor->id, $monitor->sujeito, $monitor);
 
             $notification = array(
                 'message' => 'Monitorizacao Atualizada',

@@ -12,6 +12,7 @@ class Product extends Model
     use HasFactory;
 
     protected $table = "Product";
+    public static $table_name = "Product";
     protected $guarded = [];
     public static $gs1 = "9124";
 
