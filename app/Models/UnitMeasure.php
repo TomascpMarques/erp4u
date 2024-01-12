@@ -9,6 +9,6 @@ class UnitMeasure extends Model
 {
     use HasFactory;
 
-    protected $table = "UnitMeasure";
+    protected $table = "unitmeasure";
     protected $guarded = [];
 }

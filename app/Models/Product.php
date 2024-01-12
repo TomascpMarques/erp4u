@@ -11,8 +11,8 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $table = "Product";
-    public static $table_name = "Product";
+    protected $table = "product";
+    public static $table_name = "product";
     protected $guarded = [];
     public static $gs1 = "9124";
 
@@ -117,6 +117,6 @@ class Product extends Model
     }
     public function monitorizacao(): HasOne
     {
-        return $this->hasOne(Monitorizacao::class, "product_id");
+        return $this->hasOne(Monitorizacao::class, "product_id", "code");
     }
 }

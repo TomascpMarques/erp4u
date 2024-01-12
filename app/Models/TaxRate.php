@@ -9,6 +9,6 @@ class TaxRate extends Model
 {
     use HasFactory;
 
-    protected $table = "TaxRate";
+    protected $table = "taxrate";
     protected $guarded = [];
 }

@@ -9,7 +9,7 @@ class Supplier extends Model
 {
     use HasFactory;
 
-    protected $table = "Supplier";
+    protected $table = "supplier";
     protected $guarded = [];
 
     public function postalCodeLink()

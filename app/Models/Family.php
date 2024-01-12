@@ -9,6 +9,6 @@ class Family extends Model
 {
     use HasFactory;
 
-    protected $table = "Family";
+    protected $table = "family";
     protected $guarded = [];
 }

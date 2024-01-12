@@ -56,7 +56,7 @@ Route::controller(ProductController::class)->group(function () {
     Route::get("/products/edit/{id}", "ProductsEdit")->name("product.edit");
     Route::post("/products/update", "ProductsUpdate")->name("product.update");
     Route::get("/products/delete/{id}", "ProductsDelete")->name("product.delete");
-    Route::get("/products/getOne/{id}", "ProductsGetOne")->name("product.getOne")->middleware(EmailMiddleware::class);
+    Route::get("/products/getOne/{id}", "ProductsGetOne")->name("product.getOne");
     Route::get("/products/sellOne/{id}", "ProductsSellOne")->name("product.sellOne")->middleware(EmailMiddleware::class);
     Route::get("/products/buy/{quantity}/{id}", "ProductsBuy")->name("product.buy")->middleware(EmailMiddleware::class);
 })->middleware(['auth', 'verified']);

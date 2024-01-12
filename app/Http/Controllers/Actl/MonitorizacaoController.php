@@ -16,48 +16,47 @@ class MonitorizacaoController extends Controller
     public function MonitorAll()
     {
         $monitors = Monitorizacao::all();
-        $x = Monitorizacao::find(12);
 
         return view('backend.monitorizacao.monitor_all', compact('monitors'));
     }
     public function MonitorAdd()
     {
         $products = Product::select('code', 'description')->get();
-        $productIdsArray = Product::select('code')->whereNotIn('code', Monitorizacao::select('code')->get())->get();
+        $productIdsArray = Product::select('id', 'code')->whereNotIn('code', Monitorizacao::select('code')->get())->get();
         return view('backend.monitorizacao.monitor_add', compact('products', 'productIdsArray'));
     }
     public function MonitorStore(Request $request)
     {
-        try {
+        $id = Product::select("id")->where('id', '=', $request->code)->first();
 
-            $monitor = new Monitorizacao();
+        Monitorizacao::insert([
+            "product_id" => $id->id,
+            "code" => $request->code,
+            "ativa" => $request->ativa,
+            "sujeito" => $request->sujeito,
+            "tema" => $request->tema,
+            "regra_envio" => $request->regrasDef,
+            "conteudo" => $request->conteudo,
+            "updated_at" => Carbon::now(),
+            "created_at" => Carbon::now(),
+            "created_by" => Auth::user()->id,
+            "updated_by" => Auth::user()->id,
+        ]);
 
-            $monitor->product_id = $request->code;
-            $monitor->code = $request->code;
-            $monitor->ativa = $request->ativa;
-            $monitor->sujeito = $request->sujeito;
-            $monitor->tema = $request->tema;
-            $monitor->regra_envio = $request->regrasDef;
-            $monitor->conteudo = $request->conteudo;
-            $monitor->updated_at = Carbon::now();
-            $monitor->created_at = Carbon::now();
-            $monitor->created_by = Auth::user()->id;
-            $monitor->updated_by = Auth::user()->id;
+        $notification = array(
+            'message' => 'Monitorização Inserted',
+            'alert-type' => 'success',
+        );
+        return redirect()->route('monitor.all')->with($notification);
+        /* try {
 
-            $monitor->save();
-
-            $notification = array(
-                'message' => 'Monitorização Inserted',
-                'alert-type' => 'success',
-            );
-            return redirect()->route('monitor.all')->with($notification);
         } catch (\Exception $e) {
             $notification = array(
                 'message' => $e,
                 'alert-type' => 'error',
             );
             return redirect()->route('monitor.all')->with($notification);
-        }
+        } */
 
     }
     public function MonitorEdit($id)

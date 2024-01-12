@@ -18,10 +18,10 @@ class ProductController extends Controller
 {
     public function ProductsBuy($quantity, $id)
     {
+        $product = Product::find($id);
+        $product->quantidade = (int) $product->quantidade + (int) $quantity;
+        $product->save();
         try {
-            $product = Product::find($id);
-            $product->quantidade = $product->quantidade + $quantity;
-            $product->save();
         } catch (Exception $e) {
         }
         response()->json(['success' => 'success'], 200);

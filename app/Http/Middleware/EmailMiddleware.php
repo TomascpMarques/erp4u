@@ -20,8 +20,14 @@ class EmailMiddleware
     {
         $a = $next($request);
 
-        $monitor = Monitorizacao::select('*')->where('product_id', $request->id)->first();
-        $rules = Monitorizacao::select('regra_envio')->where('id', $monitor->id)->first();
+        $monitor = Monitorizacao::select('*')->where('code', $request->id)->first();
+        if ($monitor == null) {
+            return $a;
+        }
+        $rules = Monitorizacao::select('regra_envio', 'ativa')->where('id', $monitor->id)->first();
+        if ($rules->ativa != 1) {
+            return $a;
+        }
         $res = Monitorizacao::runRuleCheckProcedure($request->id, $rules->regra_envio);
 
         if ($res) {

@@ -14,7 +14,7 @@ class Monitorizacao extends Model
 {
     use HasFactory;
     protected $table = "monitorizacao";
-    public static $table_name = "Product";
+    public static $table_name = "monitorizacao";
     protected $guarded = [];
 
     public static function sendEmailOnRuleActivationChange($subject, $monitor): void
@@ -32,6 +32,6 @@ class Monitorizacao extends Model
 
     public function product(): BelongsTo
     {
-        return $this->belongsTo(Product::class, 'product_id', 'code');
+        return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 }

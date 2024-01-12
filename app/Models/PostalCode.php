@@ -9,6 +9,6 @@ use Illuminate\Http\Request;
 class PostalCode extends Model
 {
     use HasFactory;
-    protected $table = "PostalCode";
+    protected $table = "postalcode";
     protected $guarded = [];
 }

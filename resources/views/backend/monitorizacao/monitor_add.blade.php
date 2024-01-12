@@ -69,7 +69,7 @@
                                         <option value=""></option>
                                         @foreach ($productIdsArray as $key =>
                                         $id)
-                                        <option value="{{ $id->code }}">
+                                        <option value="{{ $id->id }}">
                                             {{ $id->code }}
                                         </option>
                                         @endforeach
